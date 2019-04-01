@@ -737,7 +737,7 @@
 
 
 
-<script> $(".l_header .s-menu>.fas.fa-bars.fa-fw").click(function() { $("body").toggleClass("z_menu-open"); }) </script>
+<script> $(".l_header .s-menu>.fas.fa-bars.fa-fw").click(function() { setTimeout(() => { if ($(this).parent().hasClass("active")) { return; }; $("body").toggleClass("z_menu-open"); }) }) </script>
 
 
     <script>setLoadingBarProgress(100);</script>
