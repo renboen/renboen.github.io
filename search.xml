@@ -4,42 +4,38 @@
   
     
     <entry>
-      <title>test</title>
-      <link href="/2019/03/30/test.3/"/>
-      <url>/2019/03/30/test.3/</url>
+      <title></title>
+      <link href="/2019/04/15/lazyloadimage/"/>
+      <url>/2019/04/15/lazyloadimage/</url>
       
-        <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
+        <content type="html"><![CDATA[<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0">    <title>lazy</title>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1">    <style>        * {            margin: 0;            padding: 0;        }                #scrollWrap {            width: 100%;        }                .imgWrap {            display: flex;            align-items: center;            width: 100%;            padding: 8px;            box-sizing: border-box;            border: 1px solid #ccc;            height: 400px;        }                img {            width: 100%;        }    </style></head><body>    <div id="scrollWrap">        <div class="imgWrap">            <img class="lazy" data-src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2735633715,2749454924&fm=27&gp=0.jpg" alt>        </div>        <div class="imgWrap">            <img class="lazy" data-src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=935292084,2640874667&fm=27&gp=0.jpg" alt>        </div>        <div class="imgWrap">            <img class="lazy" data-src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3205470526,1518785822&fm=27&gp=0.jpg" alt>        </div>        <div class="imgWrap">            <img class="lazy" data-src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=832192736,1053576081&fm=27&gp=0.jpg" alt>        </div>    </div></body><script>    let throttle = function(fn, dely = 1000) {        let preDate = 0;        let timer;        return function() {            clearTimeout(timer)            let content = this;            let arg = arguments;            let curDate = Date.now();            if (curDate - preDate > dely) {                fn.apply(content, arg);                preDate = curDate            } else {                timer = setTimeout(() => {                    fn.apply(content, arg)                }, dely);            }        }    }    let r = throttle(function() {        console.log(this);    })    onload = function() {        //滚动节流         let raf = function(fn) {            console.log(this);            if ("requestAnimationFrame" in window) {                console.log("00");                return function() {                    let content = this;                    let arg = arguments;                    console.log(arg)                    window.requestAnimationFrame(() => {                        fn.apply(content, arg)                    })                }            } else {                let r = throttle(fn);                return r            }        };        // document.getElementById("scrollWrap").onclick = raf(function() {        //     console.log(this)        // })        let pageWidth = Math.max(window.pageYOffset, document.documentElement.clientHeight);        let hander = raf(function() {            console.log("object");            let elements = document.querySelectorAll("img:not([src])");            if (!elements.length) return;            let scrollTop = Math.max(document.body.scrollTop, document.documentElement                .scrollTop,                document.scrollingElement.scrollTop);            for (let ele of Array.from(elements)) {                if (ele.parentNode.offsetTop < scrollTop + pageWidth) {                    ele.src = ele.getAttribute(                        "data-src")                } else {                    continue                }            }        });        hander()        this.addEventListener("scroll", hander, false);    }    // onload = function() {    //     let lazyElements = document.getElementsByClassName("imgWrap");    //     let observer = new IntersectionObserver(onIntersection, {    //         rootMargin: '50px 0px',    //         threshold: 0.01    //     });    //     Array.from(lazyElements).forEach(image => {    //         observer.observe(image);    //     });    //     function onIntersection(entries) {    //         console.log(entries);    //         entries.forEach(entry => {    //             if (entry.intersectionRatio > 0) {    //                 observer.unobserve(entry.target);    //                 entry.target.querySelector("img").src = entry.target.querySelector("img").getAttribute(    //                     "data-src")    //             }    //         });    //     }    // }</script></html>]]></content>
       
       
-      
-        <tags>
-            
-            <tag> 随笔 </tag>
-            
-        </tags>
       
     </entry>
     
     
     
     <entry>
-      <title>test</title>
-      <link href="/2019/03/30/test.1/"/>
-      <url>/2019/03/30/test.1/</url>
+      <title>catcherr</title>
+      <link href="/2019/04/02/catcherr/"/>
+      <url>/2019/04/02/catcherr/</url>
       
-        <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="前端请求过程中对接口错误进行捕获处理。"><a href="#前端请求过程中对接口错误进行捕获处理。" class="headerlink" title="前端请求过程中对接口错误进行捕获处理。"></a>前端请求过程中对接口错误进行捕获处理。</h2><a id="more"></a><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3>]]></content>
       
       
       <categories>
           
-          <category> node </category>
+          <category> web </category>
+          
+          <category> axios </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 随笔 </tag>
+            <tag> 错误捕获处理 </tag>
             
         </tags>
       
@@ -49,8 +45,21 @@
     
     <entry>
       <title>test</title>
-      <link href="/2019/03/30/test.9/"/>
-      <url>/2019/03/30/test.9/</url>
+      <link href="/2019/04/02/test-1/"/>
+      <url>/2019/04/02/test-1/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>test</title>
+      <link href="/2019/03/30/test.10/"/>
+      <url>/2019/03/30/test.10/</url>
       
         <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
       
@@ -87,8 +96,8 @@
     
     <entry>
       <title>test</title>
-      <link href="/2019/03/30/test.13/"/>
-      <url>/2019/03/30/test.13/</url>
+      <link href="/2019/03/30/test.11/"/>
+      <url>/2019/03/30/test.11/</url>
       
         <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
       
@@ -106,8 +115,8 @@
     
     <entry>
       <title>test</title>
-      <link href="/2019/03/30/test.11/"/>
-      <url>/2019/03/30/test.11/</url>
+      <link href="/2019/03/30/test.13/"/>
+      <url>/2019/03/30/test.13/</url>
       
         <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
       
@@ -144,46 +153,8 @@
     
     <entry>
       <title>test</title>
-      <link href="/2019/03/30/test.16/"/>
-      <url>/2019/03/30/test.16/</url>
-      
-        <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 随笔 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>test</title>
       <link href="/2019/03/30/test.15/"/>
       <url>/2019/03/30/test.15/</url>
-      
-        <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 随笔 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>test</title>
-      <link href="/2019/03/30/test.10/"/>
-      <url>/2019/03/30/test.10/</url>
       
         <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
       
@@ -220,27 +191,8 @@
     
     <entry>
       <title>test</title>
-      <link href="/2019/03/30/test.4/"/>
-      <url>/2019/03/30/test.4/</url>
-      
-        <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> node </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>test</title>
-      <link href="/2019/03/30/test.7/"/>
-      <url>/2019/03/30/test.7/</url>
+      <link href="/2019/03/30/test.3/"/>
+      <url>/2019/03/30/test.3/</url>
       
         <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
       
@@ -268,6 +220,44 @@
         <tags>
             
             <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>test</title>
+      <link href="/2019/03/30/test.16/"/>
+      <url>/2019/03/30/test.16/</url>
+      
+        <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>test</title>
+      <link href="/2019/03/30/test.4/"/>
+      <url>/2019/03/30/test.4/</url>
+      
+        <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> node </tag>
             
         </tags>
       
@@ -315,6 +305,25 @@
     
     <entry>
       <title>test</title>
+      <link href="/2019/03/30/test.9/"/>
+      <url>/2019/03/30/test.9/</url>
+      
+        <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>test</title>
       <link href="/2019/03/30/test/"/>
       <url>/2019/03/30/test/</url>
       
@@ -325,6 +334,50 @@
         <tags>
             
             <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>test</title>
+      <link href="/2019/03/30/test.7/"/>
+      <url>/2019/03/30/test.7/</url>
+      
+        <content type="html"><![CDATA[<p>随笔<br>这是摘要</p><a id="more"></a><p>这是正文</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>test</title>
+      <link href="/2019/03/30/test.1/"/>
+      <url>/2019/03/30/test.1/</url>
+      
+        <content type="html"><![CDATA[<h2 id="利用观察者实现简单的图片懒加载；"><a href="#利用观察者实现简单的图片懒加载；" class="headerlink" title="利用观察者实现简单的图片懒加载；"></a>利用观察者实现简单的图片懒加载；</h2><h3 id="图片懒加载的原生实现。"><a href="#图片懒加载的原生实现。" class="headerlink" title="图片懒加载的原生实现。"></a>图片懒加载的原生实现。</h3><p>图片懒加载的实现原理，一般都是监听滚动事件，根据可滚动元素的滚动高度scrollTop，与懒加载的元素的offsetTop进行比较，当scrollTop&gt;offsetTop+可视高度(如果可滚动元素是body,可视高度为document.body.clentHeight)时;惊醒相应的逻辑操作；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> throttle = <span class="function"><span class="keyword">function</span>(<span class="params">fn, dely = <span class="number">1000</span></span>) </span>&#123;</span><br><span class="line">       <span class="keyword">let</span> preDate = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">let</span> timer;</span><br><span class="line">       <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">           clearTimeout(timer)</span><br><span class="line">           <span class="keyword">let</span> content = <span class="keyword">this</span>;</span><br><span class="line">           <span class="keyword">let</span> arg = <span class="built_in">arguments</span>;</span><br><span class="line">           <span class="keyword">let</span> curDate = <span class="built_in">Date</span>.now();</span><br><span class="line">           <span class="keyword">if</span> (curDate - preDate &gt; dely) &#123;</span><br><span class="line">               fn.apply(content, arg);</span><br><span class="line">               preDate = curDate</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               timer = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                   fn.apply(content, arg)</span><br><span class="line">               &#125;, dely);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">let</span> r = throttle(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">   &#125;)</span><br><span class="line">   onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">       <span class="comment">//滚动节流 </span></span><br><span class="line">       <span class="keyword">let</span> raf = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">           <span class="built_in">console</span>.log(<span class="keyword">this</span>);</span><br><span class="line">           <span class="keyword">if</span> (<span class="string">"requestAnimationFrame"</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">               <span class="built_in">console</span>.log(<span class="string">"00"</span>);</span><br><span class="line">               <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                   <span class="keyword">let</span> content = <span class="keyword">this</span>;</span><br><span class="line">                   <span class="keyword">let</span> arg = <span class="built_in">arguments</span>;</span><br><span class="line">                   <span class="built_in">console</span>.log(arg)</span><br><span class="line">                   <span class="built_in">window</span>.requestAnimationFrame(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                       fn.apply(content, arg)</span><br><span class="line">                   &#125;)</span><br><span class="line">               &#125;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="keyword">let</span> r = throttle(fn);</span><br><span class="line">               <span class="keyword">return</span> r</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br><span class="line">       <span class="keyword">let</span> pageWidth = <span class="built_in">Math</span>.max(<span class="built_in">window</span>.pageYOffset, <span class="built_in">document</span>.documentElement.clientHeight,<span class="built_in">document</span>.documentElement.clientHeight);</span><br><span class="line">       <span class="keyword">let</span> hander = raf(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">           <span class="built_in">console</span>.log(<span class="string">"object"</span>);</span><br><span class="line">           <span class="keyword">let</span> elements = <span class="built_in">document</span>.querySelectorAll(<span class="string">"img:not([src])"</span>);</span><br><span class="line">           <span class="keyword">if</span> (!elements.length) <span class="keyword">return</span>;</span><br><span class="line">           <span class="keyword">let</span> scrollTop = <span class="built_in">Math</span>.max(<span class="built_in">document</span>.body.scrollTop, <span class="built_in">document</span>.documentElement</span><br><span class="line">               .scrollTop,</span><br><span class="line">               <span class="built_in">document</span>.scrollingElement.scrollTop);</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">let</span> ele <span class="keyword">of</span> <span class="built_in">Array</span>.from(elements)) &#123;</span><br><span class="line">               <span class="keyword">if</span> (ele.parentNode.offsetTop &lt; scrollTop + pageWidth) &#123;</span><br><span class="line">                   ele.src = ele.getAttribute(</span><br><span class="line">                       <span class="string">"data-src"</span>)</span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   <span class="keyword">continue</span></span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">       hander()</span><br><span class="line">       <span class="keyword">this</span>.addEventListener(<span class="string">"scroll"</span>, hander, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p><h4 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h4><ol><li><a href="https://www.w3cplus.com/javascript/different-types-of-observers-supported-by-modern-browsers.html" title="浏览器中的观察者" target="_blank" rel="noopener">浏览器中的观察者</a></li><li><a href="https://www.zhangxinxu.com/wordpress/2019/02/document-scrollingelement/" title="scrollTop兼容性" target="_blank" rel="noopener">scrollTop兼容性</a></li></ol><a id="more"></a><p>这是正文</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> js </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IntersectionObserver </tag>
             
         </tags>
       
@@ -348,6 +401,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
       
     </entry>
     
