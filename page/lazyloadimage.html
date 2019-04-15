@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>test | 任博恩blog</title>
+  <title>任博恩blog</title>
   
   <meta name="keywords" content="blog,js,node-js,vue">
   
@@ -181,7 +181,7 @@
     <div class="l_body">
     <div class='container clearfix'>
         <div class='l_main'>
-            <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+            <article id="page" class="post white-box article-type-page" itemscope itemprop="blogPost">
   
 <section class="meta">
   
@@ -189,7 +189,7 @@
   <div class="meta" id="header-meta">
     
       
-          <h1 class="title">test</h1>
+          <h1 class="title">2019-04-15</h1>
       
     
 
@@ -206,12 +206,10 @@
         <div class="new-meta-item date">
           <a class="notlink">
             <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-            2019-03-30
+            2019-04-15
           </a>
         </div>
       
-      
-        
       
       
         
@@ -233,75 +231,149 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <p>随笔<br>这是摘要</p>
-<a id="more"></a>
-<p>这是正文</p>
+        <!DOCTYPE html>
+<html lang="en">
 
+<head><meta name="generator" content="Hexo 3.8.0">
+    <title>lazy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #scrollWrap {
+            width: 100%;
+        }
+        
+        .imgWrap {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            height: 400px;
+        }
+        
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="scrollWrap">
+        <div class="imgWrap">
+            <img class="lazy" data-src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2735633715,2749454924&fm=27&gp=0.jpg" alt>
+        </div>
+        <div class="imgWrap">
+            <img class="lazy" data-src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=935292084,2640874667&fm=27&gp=0.jpg" alt>
+        </div>
+        <div class="imgWrap">
+            <img class="lazy" data-src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3205470526,1518785822&fm=27&gp=0.jpg" alt>
+        </div>
+        <div class="imgWrap">
+            <img class="lazy" data-src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=832192736,1053576081&fm=27&gp=0.jpg" alt>
+        </div>
+    </div>
+</body>
+<script>
+    let throttle = function(fn, dely = 1000) {
+        let preDate = 0;
+        let timer;
+        return function() {
+            clearTimeout(timer)
+            let content = this;
+            let arg = arguments;
+            let curDate = Date.now();
+            if (curDate - preDate > dely) {
+                fn.apply(content, arg);
+                preDate = curDate
+            } else {
+                timer = setTimeout(() => {
+                    fn.apply(content, arg)
+                }, dely);
+            }
+        }
+    }
+    let r = throttle(function() {
+        console.log(this);
+    })
+    onload = function() {
+        //滚动节流 
+        let raf = function(fn) {
+            console.log(this);
+            if ("requestAnimationFrame" in window) {
+                console.log("00");
+                return function() {
+                    let content = this;
+                    let arg = arguments;
+                    console.log(arg)
+                    window.requestAnimationFrame(() => {
+                        fn.apply(content, arg)
+                    })
+                }
+            } else {
+                let r = throttle(fn);
+                return r
+            }
+        };
+        // document.getElementById("scrollWrap").onclick = raf(function() {
+        //     console.log(this)
+        // })
+        let pageWidth = Math.max(window.pageYOffset, document.documentElement.clientHeight);
+        let hander = raf(function() {
+            console.log("object");
+            let elements = document.querySelectorAll("img:not([src])");
+            if (!elements.length) return;
+            let scrollTop = Math.max(document.body.scrollTop, document.documentElement
+                .scrollTop,
+                document.scrollingElement.scrollTop);
+            for (let ele of Array.from(elements)) {
+                if (ele.parentNode.offsetTop < scrollTop + pageWidth) {
+                    ele.src = ele.getAttribute(
+                        "data-src")
+                } else {
+                    continue
+                }
+            }
+        });
+        hander()
+        this.addEventListener("scroll", hander, false);
+
+    }
+
+
+    // onload = function() {
+    //     let lazyElements = document.getElementsByClassName("imgWrap");
+    //     let observer = new IntersectionObserver(onIntersection, {
+    //         rootMargin: '50px 0px',
+    //         threshold: 0.01
+    //     });
+    //     Array.from(lazyElements).forEach(image => {
+    //         observer.observe(image);
+    //     });
+
+    //     function onIntersection(entries) {
+    //         console.log(entries);
+    //         entries.forEach(entry => {
+    //             if (entry.intersectionRatio > 0) {
+    //                 observer.unobserve(entry.target);
+    //                 entry.target.querySelector("img").src = entry.target.querySelector("img").getAttribute(
+    //                     "data-src")
+    //             }
+    //         });
+    //     }
+    // }
+</script>
+
+</html>
       </div>
         
-          <section class="meta" id="footer-meta">
-            <hr>
-            <div class="new-meta-box">
-              
-                <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-03-30T17:38:40+08:00">
-                  <a class="notlink">
-                    <i class="fas fa-save" aria-hidden="true"></i>
-                    2019-03-30
-                  </a>
-                </div>
-              
-              
-                
-                <div class="new-meta-item meta-tags"><a class="tag" href="/tags/随笔/"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;随笔</a></div>
-              
-              
-            </div>
-          </section>
-        
 
-        
-            <div class="prev-next">
-                
-                    <section class="prev">
-                        <span class="art-item-left">
-                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页</h6>
-                            <h4>
-                                <a href="/2019/03/30/test.12/" rel="prev" title="test">
-                                  
-                                      test
-                                  
-                                </a>
-                            </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <a class="tag" href="/tags/随笔/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>随笔</a>
-                                </h6>
-                            
-                        </span>
-                    </section>
-                
-                
-                    <section class="next">
-                        <span class="art-item-right" aria-hidden="true">
-                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
-                            <h4>
-                                <a href="/2019/03/30/test.15/" rel="prev" title="test">
-                                    
-                                        test
-                                    
-                                </a>
-                            </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <a class="tag" href="/tags/随笔/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>随笔</a>
-                                </h6>
-                            
-                        </span>
-                    </section>
-                
-            </div>
         
 
     </section>
@@ -321,7 +393,7 @@
 
 <script>
     window.subData = {
-        title: 'test',
+        title: '',
         tools: true
     }
 </script>
